@@ -2,7 +2,7 @@
 
 Use [`expo-router`](https://docs.expo.dev/router/introduction/) to build native navigation using files in the `app/` directory.
 
-## 📚 Inspiration & Credits
+## Inspiration & Credits
 
 This project was inspired by and built following the tutorial from **Aaron K. Saunders** (@aaronksaunders). The original codebase and implementation approach were based on his excellent work demonstrating React Native Expo offline data storage with SQLite.
 
@@ -10,7 +10,7 @@ This project was inspired by and built following the tutorial from **Aaron K. Sa
 - **Original Repository**: [my-app-sqlite-no-template](https://github.com/aaronksaunders/my-app-sqlite-no-template)
 - **Tutorial Video**: [React Native Expo: Offline Data Storage with SQLite](https://youtu.be/vgPdAARd6Gw?si=zW5WAuDE7af2wgTt)
 
-## ✨ Changes & Customizations
+## Changes & Customizations
 
 This project extends the original implementation with the following modifications:
 
@@ -32,10 +32,11 @@ This project extends the original implementation with the following modification
 - **Dependency Updates**: Updated all packages to latest compatible versions
 - **Code Organization**: Improved component structure and styling consistency
 
-## VIDEO WALKTHROUGH
+## Video Walkthrough
+
 - https://youtu.be/vgPdAARd6Gw?si=zW5WAuDE7af2wgTt
 
-## 🚀 How to use
+## How to use
 
 ```sh
 npx create-expo-app@latest -e with-router

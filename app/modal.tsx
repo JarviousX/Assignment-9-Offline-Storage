@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  InteractionManager,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -81,16 +82,29 @@ export default function ItemModal() {
    * which will automatically refresh and display the new record.
    */
   const handleSave = async () => {
+    // Validate input fields
+    if (!name.trim() || !email.trim()) {
+      console.error("Name and email are required");
+      return;
+    }
+
     try {
       // Execute INSERT SQL query with parameterized values to prevent SQL injection
       const response = await database.runAsync(
         `INSERT INTO users (name, email, image) VALUES (?, ?, ?)`,
-        [name, email, ""]
+        [name.trim(), email.trim(), ""]
       );
+      
       console.log("Item saved successfully:", response?.changes!);
-      router.back(); // Navigate back to home screen (triggers data refresh)
+      
+      // Wait for all interactions to complete before navigating
+      // This ensures the database operation is fully committed
+      InteractionManager.runAfterInteractions(() => {
+        router.back();
+      });
     } catch (error) {
       console.error("Error saving item:", error);
+      // Don't navigate if there's an error
     }
   };
 
@@ -102,16 +116,29 @@ export default function ItemModal() {
    * which will automatically refresh and display the updated record.
    */
   const handleUpdate = async () => {
+    // Validate input fields
+    if (!name.trim() || !email.trim()) {
+      console.error("Name and email are required");
+      return;
+    }
+
     try {
       // Execute UPDATE SQL query with parameterized values
       const response = await database.runAsync(
         `UPDATE users SET name = ?, email = ? WHERE id = ?`,
-        [name, email, parseInt(id as string)]
+        [name.trim(), email.trim(), parseInt(id as string)]
       );
+      
       console.log("Item updated successfully:", response?.changes!);
-      router.back(); // Navigate back to home screen (triggers data refresh)
+      
+      // Wait for all interactions to complete before navigating
+      // This ensures the database operation is fully committed
+      InteractionManager.runAfterInteractions(() => {
+        router.back();
+      });
     } catch (error) {
       console.error("Error updating item:", error);
+      // Don't navigate if there's an error
     }
   };
 
